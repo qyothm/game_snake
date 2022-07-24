@@ -166,43 +166,47 @@ class _SnakeScreenState extends State<SnakeScreen> {
                   direction = 'left';
                 }
               },
-              child: GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: numberOfSquares,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 20),
-                  itemBuilder: (BuildContext context, int index) {
-                    if (snakePosition.contains(index)) {
-                      return Center(
-                        child: Container(
+              child: Container(
+                margin: const EdgeInsets.only(top: 15.0),
+                child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: numberOfSquares,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 20),
+                    itemBuilder: (BuildContext context, int index) {
+                      if (snakePosition.contains(index)) {
+                        return Center(
+                          child: Container(
+                            padding: const EdgeInsets.all(2),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: Container(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      if (index == food) {
+                        return Container(
                           padding: const EdgeInsets.all(2),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(5),
-                            child: Container(
-                              color: Colors.white,
-                            ),
+                            child: Container(color: Colors.green),
                           ),
-                        ),
-                      );
-                    }
-                    if (index == food) {
-                      return Container(
-                        padding: const EdgeInsets.all(2),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Container(color: Colors.green),
-                        ),
-                      );
-                    } else {
-                      return Container(
-                        padding: const EdgeInsets.all(2),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Container(color: Colors.grey[900]),
-                        ),
-                      );
-                    }
-                  }),
+                        );
+                      } else {
+                        return Container(
+                          padding: const EdgeInsets.all(2),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: Container(color: Colors.grey[900]),
+                          ),
+                        );
+                      }
+                    }),
+              ),
             ),
           ),
           Padding(
